@@ -1,4 +1,4 @@
-package agh.ernest;
+package agh.ernest.lab1and2;
 
 class Semafor {
     private boolean stan = true ;
