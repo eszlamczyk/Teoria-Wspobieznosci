@@ -2,7 +2,7 @@ package agh.ernest.lab4;
 
 public class Arbiter {
 
-    private int N_philosophers;
+    private final int N_philosophers;
 
     private int current_eating;
 
@@ -18,7 +18,7 @@ public class Arbiter {
         current_eating++;
     }
 
-    public synchronized void stopEating() throws InterruptedException {
+    public synchronized void stopEating(){
         current_eating--;
         notifyAll();
     }

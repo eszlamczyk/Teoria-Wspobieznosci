@@ -6,14 +6,16 @@ public class Philosopher2 implements Runnable {
     private State state;
     private final Random random;
 
-    private Chopstick leftChopstick;
+    private final Chopstick leftChopstick;
 
-    private Chopstick rightChopstick;
-    private int number;
+    private final Chopstick rightChopstick;
+    private final int number;
 
+    private final boolean debugMode;
     private final PhilosopherObserver observer;
 
-    public Philosopher2(Chopstick leftChopstick, Chopstick rightChopstick, int number, PhilosopherObserver observer) {
+    public Philosopher2(Chopstick leftChopstick, Chopstick rightChopstick, int number,boolean debugMode, PhilosopherObserver observer) {
+        this.debugMode = debugMode;
         this.observer = observer;
         this.state = State.thinking;
         this.random = new Random();
@@ -27,28 +29,36 @@ public class Philosopher2 implements Runnable {
     }
 
     private void think() throws InterruptedException {
-        System.out.println("Philosopher " + this.number + " think");
-        Thread.sleep(random.nextLong(10,5000));
+        if(debugMode){
+            System.out.println("Philosopher " + this.number + " think");
+        }
+        Thread.sleep(random.nextLong(10,50));
         notifyStateChange();
         this.state = state.next();
     }
 
     private void tryEating() throws InterruptedException {
-        System.out.println("Philosopher " + this.number + " is trying to eat");
+        if(debugMode){
+            System.out.println("Philosopher " + this.number + " is trying to eat");
+        }
         leftChopstick.pickUp();
-        Thread.sleep(5000);
+        if(debugMode){
+            Thread.sleep(5000);
+        }
         if(rightChopstick.tryPickUp()){
             notifyStateChange();
             this.state = state.next();
             return;
         }
         leftChopstick.drop();
-        Thread.sleep(random.nextLong(10,5000));
+        Thread.sleep(random.nextLong(10,50));
     }
 
     private void eat() throws InterruptedException {
-        System.out.println("Philosopher " + this.number + " is eating");
-        Thread.sleep(random.nextLong(10,5000));
+        if(debugMode){
+            System.out.println("Philosopher " + this.number + " is eating");
+        }
+        Thread.sleep(random.nextLong(10,50));
         leftChopstick.drop();
         rightChopstick.drop();
         notifyStateChange();
@@ -58,7 +68,8 @@ public class Philosopher2 implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) {
+        //System.out.println("PHILOSOPHER " + number + " STARTED");
+        for (int i = 0; i < 1000; i++) {
             try {
                 switch (state) {
                     case thinking -> think();

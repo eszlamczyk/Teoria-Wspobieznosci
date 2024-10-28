@@ -66,8 +66,8 @@ public class PhilosopherObserver {
     }
 
     // Generate report for all philosophers
-    public void generateReport() {
-        System.out.println("\n--- Philosopher Activity Report ---\n");
+    public void generateReport(String classNumber) {
+        System.out.println("\n--- " + classNumber + " Activity Report ---\n");
         for (Integer philosopherNumber : thinkingTimes.keySet()) {
             System.out.println("Philosopher " + philosopherNumber + ":");
             getMeanThinkingTime(philosopherNumber).ifPresent(mean ->
