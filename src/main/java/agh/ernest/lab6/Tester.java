@@ -1,8 +1,5 @@
 package agh.ernest.lab6;
 
-import java.util.ArrayList;
-import java.util.Timer;
-
 public class Tester {
 
     public static void main(String[] args) {
@@ -210,6 +207,6 @@ public class Tester {
         // Convert to milliseconds for readability
         double elapsedTimeInMillis = elapsedTime / 1_000_000.0;
 
-        System.out.println(list.toString() + " completed in: " + elapsedTimeInMillis + " ms");
+        System.out.println(list + " completed in: " + elapsedTimeInMillis + " ms");
     }
 }
