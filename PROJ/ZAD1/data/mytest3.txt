@@ -1,0 +1,8 @@
+(a) x := y * z
+(b) y := z * v
+(c) z := v * x
+(d) v := x * y
+(e) x := y * x
+(f) v := v * z
+A = {a, b, c, d, e, f}
+w = afaeffbcd
